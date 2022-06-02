@@ -1,0 +1,65 @@
+//------------------------------------------------------------------//
+//------------------------- // Game // -----------------------------//
+//------------------------------------------------------------------//
+
+* {
+  font-family: "Exo", sans-serif;
+}
+
+.favoris-app {
+  height: 100vh;
+  margin: auto;
+  width: 70%;
+  background-color: #1f2023;
+  border-top: 1px solid #1f2023;
+  border-bottom: 1px solid #1f2023;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .carroussel {
+    height: 250px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    overflow-x: scroll;
+    background-color: #1f2023;
+
+    .bloc-image {
+      width: 200px;
+      position: relative;
+      height: 100%;
+      margin-right: 50px;
+
+      .croix {
+        position: absolute;
+        z-index: 1000;
+        width: 30px;
+        height: 30px;
+        top: 10px;
+        left: 10px;
+      }
+
+      .titre {
+        position: absolute;
+        z-index: 1000;
+        bottom: 10px;
+        left: 10px;
+        font-size: 600;
+      }
+
+      img {
+        width: 200px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+    }
+    .croix:hover {
+      cursor: grab;
+    }
+  }
+}
