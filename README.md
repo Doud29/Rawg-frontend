@@ -1,3 +1,25 @@
+
+#Présentation du Projet: 
+
+Il s'agit d'un projet full-stack réalisé avec le framework React et le langage JavaScript. 
+Il s'agit d'une réplique simplifiée du site https://rawg.io/ car certains accès comme les vidéos sont payantes. 
+
+Les features réalisées sont les suivantes : 
+
+#Frontend: 
+
+- page d'accueil comportant une liste de jeux correspondant aux jeux du moment.
+- barre de recherche pour chercher un jeu.
+- Mise en place de filtre pour permettre de trier par nom, date de sortie et note.
+- La page jeu permet, en plus d'afficher les informations relatives à un jeu, 5 jeux semblables au jeu de la page actuelle.
+
+#BackEnd: 
+
+- pages signup et login
+- Mise en place de favoris
+- laisser un avis sur le jeu
+- Système de reviews
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
