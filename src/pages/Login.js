@@ -14,7 +14,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 import croixlogo from "../svg/croixlogo.svg";
 
-const Login = ({ setUser, setProfileName, setProfilePhoto }) => {
+const Login = ({ setUser, setUserPhotoProfile, setUserName }) => {
   const navigate = useNavigate();
   //----------------------------------// icone  //------------------------------------------//
 
@@ -32,11 +32,11 @@ const Login = ({ setUser, setProfileName, setProfilePhoto }) => {
         email: email,
         password: password,
       });
-      setUser(response.data.token);
-      setProfileName(response.data.username);
-      setProfilePhoto(response.data.avatar);
-      navigate("/");
       console.log(response.data);
+      setUser(response.data.token);
+      setUserName(response.data.username);
+      setUserPhotoProfile(response.data.avatar);
+      navigate("/");
     } catch (error) {
       console.log(error.response);
     }
@@ -91,7 +91,6 @@ const Login = ({ setUser, setProfileName, setProfilePhoto }) => {
                 color: "white",
               }}
               type="submit"
-              value="Connexion"
             />
             <Link
               className="alreadyanacount"

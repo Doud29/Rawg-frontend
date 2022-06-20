@@ -13,7 +13,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 import croixlogo from "../svg/croixlogo.svg";
 
-const SignUp = ({ setUser, setProfileName, setProfilePhoto }) => {
+const SignUp = ({ setUser, setUserName, setUserPhotoProfile }) => {
   const navigate = useNavigate();
   //----------------------------------// icone  //------------------------------------------//
 
@@ -60,8 +60,8 @@ const SignUp = ({ setUser, setProfileName, setProfilePhoto }) => {
             console.log(response.data);
             if (response.data.token) {
               setUser(response.data.token);
-              setProfileName(response.data.username);
-              setProfilePhoto(response.data.avatar);
+              setUserName(response.data.username);
+              setUserPhotoProfile(response.data.avatar);
               navigate("/");
             }
           } else {

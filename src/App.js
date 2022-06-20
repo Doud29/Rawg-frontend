@@ -16,10 +16,18 @@ function App() {
   //state pour connexion
   // const [openModal, setOpenModal] = useState(false);
   const [token, setToken] = useState(Cookies.get("userToken") || null);
-  const [profileName, setProfileName] = useState("");
-  const [profilephoto, setProfilePhoto] = useState("");
-  const [favoris, setFavoris] = useState("");
+  const [profileName, setProfileName] = useState(
+    Cookies.get("userName") || null
+  );
+  const [profilephoto, setProfilePhoto] = useState(
+    Cookies.get("photoProfile") || null
+  );
 
+  const [FavorisUpdate, setFavorisUpdate] = useState(
+    Cookies.get("favoris") || null
+  );
+
+  //---------------------// Cookies pour récupérer le token et ainsi éviter de le perdre en state à chaque rafraichissement//---------------------------//
   const setUser = (token) => {
     if (token !== null) {
       Cookies.set("userToken", token, { expires: 10 });
@@ -28,6 +36,50 @@ function App() {
     }
     setToken(token);
   };
+  //-------------------------------------// Cookies le nom utilisateur //-----------------------------------//
+
+  const setUserName = (name) => {
+    if (name !== null) {
+      Cookies.set("userName", name, { expires: 10 });
+    } else {
+      Cookies.remove("userName");
+    }
+    setProfileName(name);
+  };
+
+  //-------------------------------------// Cookies l'image du profile //-----------------------------------//
+
+  const setUserPhotoProfile = (pictureLink) => {
+    if (pictureLink !== null) {
+      Cookies.set("userName", pictureLink, { expires: 10 });
+    } else {
+      Cookies.remove("userName");
+    }
+    setProfilePhoto(pictureLink);
+  };
+
+  //-------------------------------------// Cookies la gestion des favoris //-----------------------------------//
+
+  const setFavorisShow = (Gameinfos) => {
+    if (Gameinfos !== null) {
+      Cookies.set("favoris", Gameinfos, { expires: 10 });
+    } else {
+      Cookies.remove("favoris");
+    }
+    setFavorisUpdate(Gameinfos);
+  };
+
+  //-------------------------------------// Cookies la gestion des favoris //-----------------------------------//
+
+  // const UpdateFavoris = (booleen) => {
+  //   if (Gameinfos !== null) {
+  //     Cookies.set("favoris", Gameinfos, { expires: 10 });
+  //   } else {
+  //     Cookies.remove("favoris");
+  //   }
+  //   setFavorisUpdate(booleen);
+  // };
+
   return (
     <Router>
       <div className="app">
@@ -38,14 +90,19 @@ function App() {
           profilephoto={profilephoto}
         />
         <Routes>
-          <Route path="/" element={<Home token={token} />} />
+          <Route
+            path="/"
+            element={<Home token={token} profileName={profileName} />}
+          />
           <Route
             path="/signup"
             element={
               <SignUp
+                setUserName={setUserName}
                 setUser={setUser}
                 setProfileName={setProfileName}
-                setProfilePhoto={setProfilePhoto}
+                setUserPhotoProfile={setUserPhotoProfile}
+                setFavorisShow={setFavorisShow}
               />
             }
           />
@@ -53,14 +110,26 @@ function App() {
             path="/login"
             element={
               <Login
+                setUserName={setUserName}
                 setUser={setUser}
                 setProfileName={setProfileName}
-                setProfilePhoto={setProfilePhoto}
+                setUserPhotoProfile={setUserPhotoProfile}
+                setFavorisShow={setFavorisShow}
+                profileName={profileName}
               />
             }
           />
           <Route path="/game/:id" element={<Game />} />
-          <Route path="/favoris" element={<Favoris token={token} />} />
+          <Route
+            path="/favoris"
+            element={
+              <Favoris
+                token={token}
+                setUserName={setUserName}
+                FavorisUpdate={FavorisUpdate}
+              />
+            }
+          />
         </Routes>
         <Footer />
       </div>

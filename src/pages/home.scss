@@ -157,10 +157,6 @@
     align-items: center;
     justify-content: space-around;
     padding-bottom: 30px;
-    -webkit-transition: all 1s ease; /* Safari et Chrome */
-    -moz-transition: all 1s ease; /* Firefox */
-    -ms-transition: all 1s ease; /* Internet Explorer 9 */
-    transition: all 1.5s ease;
 
     .all-games {
       width: 200px;
@@ -171,6 +167,22 @@
       margin-left: 15px;
       margin-right: 15px;
       border-radius: 15px;
+      position: relative;
+
+      .title-games {
+        position: absolute;
+        color: white;
+        bottom: 17px;
+        z-index: 1000;
+        font-weight: 700;
+        font-size: 20px;
+        margin-top: 70px;
+        margin-left: 10px;
+        -webkit-transition: all 1s ease; /* Safari et Chrome */
+        -moz-transition: all 1s ease; /* Firefox */
+        -ms-transition: all 1s ease; /* Internet Explorer 9 */
+        transition: all 1.5s ease;
+      }
 
       .enfant1 {
         width: 200px;
@@ -187,50 +199,55 @@
       .enfant2 {
         width: 200px;
         height: 250px;
-        // -webkit-transition: all 1s ease; /* Safari et Chrome */
-        // -moz-transition: all 1s ease; /* Firefox */
-        // -ms-transition: all 1s ease; /* Internet Explorer 9 */
-        // transition: all 1s ease;
-        .title-games {
-          color: #ff4655;
+        opacity: 0.8;
+        background-color: grey;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
 
-          font-weight: 700;
-          font-size: 20px;
-          margin-top: 70px;
-          margin-left: 10px;
-        }
-        .fav {
-          height: 40px;
-          margin: 15px auto;
+        .enfant-2-1 {
           display: flex;
-          justify-content: center;
           align-items: center;
-          font-weight: 700;
-          color: #ff4655;
-          width: 70%;
-        }
-        .more-infos {
-          height: 40px;
-          display: flex;
-          color: white;
-          font-weight: 700;
-          color: #ff4655;
-
-          margin: 15px auto;
-          justify-content: center;
-          align-items: center;
-          width: 70%;
+          flex-direction: column;
+          justify-content: flex-start;
+          background-color: black;
+          height: 100px;
+          border: 1px solid rgb(20, 88, 20);
+          text-align: center;
+          width: 100%;
+          .fav {
+            height: 40px;
+            margin: auto;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            color: white;
+            font-size: 20px;
+            width: 90%;
+          }
+          .more-infos {
+            height: 40px;
+            display: flex;
+            font-weight: 700;
+            color: white;
+            font-size: 20px;
+            margin: auto;
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+          }
         }
       }
 
       .fav:hover {
         cursor: grab;
-        color: #ff4655;
       }
 
       .more-infos:hover {
         cursor: grab;
-        color: #ff4655;
       }
     }
     .all-games:hover {
@@ -261,6 +278,10 @@
       margin-left: 30px;
       margin-right: 15px;
       border-radius: 15px;
+      -webkit-transition: all 1s ease; /* Safari et Chrome */
+      -moz-transition: all 1s ease; /* Firefox */
+      -ms-transition: all 1s ease; /* Internet Explorer 9 */
+      transition: all 1.5s ease;
 
       img {
         object-fit: cover;
@@ -268,10 +289,10 @@
         width: 400px;
         height: 500px;
         border-radius: 15px;
-        -webkit-transition: all 1s ease; /* Safari et Chrome */
-        -moz-transition: all 1s ease; /* Firefox */
-        -ms-transition: all 1s ease; /* Internet Explorer 9 */
-        transition: all 1s ease;
+        // -webkit-transition: all 1s ease; /* Safari et Chrome */
+        // -moz-transition: all 1s ease; /* Firefox */
+        // -ms-transition: all 1s ease; /* Internet Explorer 9 */
+        // transition: all 1s ease;
       }
 
       .heart-fav {

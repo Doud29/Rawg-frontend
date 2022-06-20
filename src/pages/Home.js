@@ -9,16 +9,16 @@ import Displaycolumn from "../composents/Displaycolumn";
 import axios from "axios";
 //----------------------------- import  icone(s) -------------------------//
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 //----------------------------- import  scss -----------------------------//
 import "./home.scss";
 //-------------------------- import de la photo --------------------------//
 import rawglogo from "../svg/rawglogo.svg";
 
-const Home = ({ token }) => {
+const Home = ({ token, profileName }) => {
   //ICONS pagination :
   const chevronsLeft = <FontAwesomeIcon icon={faChevronLeft} />;
   const chevronsRigth = <FontAwesomeIcon icon={faChevronRight} />;
@@ -50,11 +50,13 @@ const Home = ({ token }) => {
 
   //----------------------------------// state pour les favoris  //------------------------------------------//
 
-  const [deleteFavoris, setDeleteFavoris] = useState(false);
+  const [updateFavoris, setupdateFavoris] = useState(false);
 
   // ---------------------------------------------------------------------------------------------------------------------------- //
   // -------------- // fonction permettant d'obtenir l'ensemble des marques [Playstation, Xbox, Nitendo,...] // ------------------//
   // ---------------------------------------------------------------------------------------------------------------------------- //
+
+  console.log(profileName);
 
   const findBrand = (array) => {
     const newTab = [];
@@ -105,41 +107,6 @@ const Home = ({ token }) => {
   };
 
   // ---------------------------------------------------------------------------------------------------------------------------- //
-  // ------------------------------------------- // REQUETE pour les favoris  // ------------------------------------------------ //
-  // ---------------------------------------------------------------------------------------------------------------------------- //
-
-  const [FavorisGame, setFavorisGame] = useState({
-    // token: token,
-    idMovie: "",
-    nameGame: "",
-    image: "",
-    rating: "",
-    released: "",
-  });
-
-  // ---------------------------------------------------------------------------------------------------------------------------- //
-  // ------------------------------------------- // REQUETE POUR LES Favoris // ------------------------------------------------- //
-  // ---------------------------------------------------------------------------------------------------------------------------- //
-
-  const favorisData = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:4000/favoris",
-        FavorisGame,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-            // "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      console.log(response);
-    } catch (error) {
-      console.log(error.response);
-    }
-  };
-
-  // ---------------------------------------------------------------------------------------------------------------------------- //
   // ------------------------------------------- // REQUETE POUR LES FILTRES // ------------------------------------------------- //
   // ---------------------------------------------------------------------------------------------------------------------------- //
 
@@ -176,7 +143,7 @@ const Home = ({ token }) => {
         );
         setData(response.data);
         setIsLoading(false);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.log(error.response);
       }
@@ -342,26 +309,31 @@ const Home = ({ token }) => {
           {data.results.map((item, index) => {
             return (
               <div key={index} className="all-games">
+                <div className="title-games">{item.name}</div>
                 <div className="enfant1">
                   <img src={item.background_image} alt="jeux" />
                 </div>
                 <div className="enfant2">
                   {token ? (
-                    <>
-                      <div className="title-games">{item.name}</div>
-
+                    <div className="enfant-2-1">
                       <div
                         className="fav"
-                        onClick={() => {
-                          setFavorisGame({
-                            idMovie: item.id,
-                            nameGame: item.name,
-                            image: item.background_image,
-                            rating: item.rating,
-                            released: item.released,
-                          });
-                          console.log(FavorisGame);
-                          favorisData();
+                        onClick={async () => {
+                          setupdateFavoris(true);
+                          try {
+                            const response = await axios.post(
+                              "http://localhost:4000/favoris",
+                              {
+                                nameGame: item.name,
+                                image: item.background_image,
+                                rating: item.rating,
+                                released: item.released,
+                                profileName,
+                              }
+                            );
+                          } catch (error) {
+                            console.log(error.response);
+                          }
                         }}
                       >
                         Ajouter au favoris
@@ -373,7 +345,7 @@ const Home = ({ token }) => {
                       >
                         <div className="more-infos">Voir+</div>
                       </Link>
-                    </>
+                    </div>
                   ) : (
                     <>
                       <div className="title-games">{item.name}</div>
@@ -408,16 +380,21 @@ const Home = ({ token }) => {
                 {token && (
                   <div
                     className="heart-fav"
-                    onClick={() => {
-                      setFavorisGame({
-                        idMovie: item.id,
-                        nameGame: item.name,
-                        image: item.background_image,
-                        rating: item.rating,
-                        released: item.released,
-                      });
-                      console.log(FavorisGame);
-                      favorisData();
+                    onClick={async () => {
+                      try {
+                        const response = await axios.post(
+                          "http://localhost:4000/favoris",
+                          {
+                            gameName: item.name,
+                            image: item.background_image,
+                            rating: item.rating,
+                            released: item.released,
+                            profileName,
+                          }
+                        );
+                      } catch (error) {
+                        console.log(error.response);
+                      }
                     }}
                   >
                     {" "}
