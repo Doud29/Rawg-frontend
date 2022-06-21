@@ -15,6 +15,8 @@ Les features réalisées sont les suivantes :
 
 #BackEnd: 
 
+https://github.com/Doud29/Rawg-backend
+
 - pages signup et login
 - Mise en place de favoris
 - laisser un avis sur le jeu
