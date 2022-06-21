@@ -4,6 +4,10 @@
 Il s'agit d'un projet full-stack réalisé avec le framework React et le langage JavaScript. 
 Il s'agit d'une réplique simplifiée du site https://rawg.io/ car certains accès comme les vidéos sont payantes. 
 
+ici la maquette du projet : 
+
+https://www.figma.com/file/wFstKKu6s5FnO2W28rEH91/Gamepad
+
 Les features réalisées sont les suivantes : 
 
 #Frontend: 
